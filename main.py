@@ -1,5 +1,9 @@
 from sqlalchemy import create_engine, Column, String, Integer, Boolean, column, ForeignKey, Delete
 from sqlalchemy.orm import sessionmaker, declarative_base
+import customtkinter as ctk
+
+ctk.set_appearance_mode('dark')
+
 
 # Criando um banco de dados - create_engine
 db = create_engine('sqlite:///meubanco.db')
@@ -44,16 +48,20 @@ Base.metadata.create_all(bind=db)
 # CRUD
 
 # C - Create
-#usuario = Usuario(nome='Pedro', email='pedro@email.com', senha='123456')
-#session.add(usuario)
-#session.commit()
+def validar_dados():
+    nome = campo_nome.get()
+    email = campo_email.get()
+    senha = campo_senha.get()
+    session.add()
+    session.commit()
+
 
 # R - Read
 #lista_usuarios = session.query(Usuario).all()
-usuario_paulo = session.query(Usuario).filter_by(id=2).first()
-print(usuario_paulo)
-print(usuario_paulo.nome)
-print(usuario_paulo.email)
+#usuario_paulo = session.query(Usuario).filter_by(id=2).first()
+#print(usuario_paulo)
+#print(usuario_paulo.nome)
+#print(usuario_paulo.email)
 
 #livro = Livro(titulo='Nome do vento', qtde_paginas=1000, dono=usuario_paulo.id)
 #session.add(livro)
@@ -67,3 +75,47 @@ print(usuario_paulo.email)
 # D - Delete
 #session.delete(usuario_paulo)
 #session.commit()
+
+# Criação da janela principal
+app = ctk.CTk()
+app.title('Banco de Dados')
+app.geometry('300x500')
+
+
+# Criação dos campos
+
+# Criação do titulo
+label_criar = ctk.CTkLabel(app, text='CREATE', font=('Helvetica', 14, 'bold'))
+label_criar.pack(pady=10)
+
+# label - nome
+label_nome = ctk.CTkLabel(app, text='Nome')
+label_nome.pack(pady=0)
+
+# Entry - nome
+campo_nome = ctk.CTkEntry(app, placeholder_text='Nome')
+campo_nome.pack(pady=0)
+
+# Label - email
+label_email = ctk.CTkLabel(app, text='Email')
+label_email.pack(pady=0)
+
+# Entry - email
+campo_email = ctk.CTkEntry(app, placeholder_text='Email')
+campo_email.pack(pady=0)
+
+# label - senha
+label_senha = ctk.CTkLabel(app, text='Senha')
+label_senha.pack(pady=0)
+
+# Entry - Senha
+campo_senha = ctk.CTkEntry(app, placeholder_text='Senha')
+campo_senha.pack(pady=0)
+
+# button Create
+botao_criar = ctk.CTkButton(app, text='Create',command=validar_dados)
+botao_criar.pack(pady=10)
+
+# Inicia o loop da aplicação ( Tela )
+app.mainloop()
+
