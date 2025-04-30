@@ -1,3 +1,5 @@
+from sys import exception
+
 from sqlalchemy import create_engine, Column, String, Integer, Boolean, column, ForeignKey, Delete
 from sqlalchemy.orm import sessionmaker, declarative_base
 import customtkinter as ctk
@@ -48,12 +50,24 @@ Base.metadata.create_all(bind=db)
 # CRUD
 
 # C - Create
+usuario = Usuario
 def validar_dados():
     nome = campo_nome.get()
     email = campo_email.get()
     senha = campo_senha.get()
-    session.add()
-    session.commit()
+
+    if not nome or not email or not senha:
+        resultado_criar.configure(text='Todos os campos devem ser preenchidos')
+        return
+    novo_usuario = usuario(nome=nome, email=email, senha=senha)
+
+    try:
+        session.add(novo_usuario)
+        session.commit()
+        resultado_criar.configure(text='Usuario cadastrado com sucesso')
+    except exception as e:
+        session.rollback()
+        resultado_criar.configure(text='Erro ao cadastrar usucario {}'.format(e))
 
 
 # R - Read
@@ -115,6 +129,10 @@ campo_senha.pack(pady=0)
 # button Create
 botao_criar = ctk.CTkButton(app, text='Create',command=validar_dados)
 botao_criar.pack(pady=10)
+
+# Campo feedback de criação
+resultado_criar = ctk.CTkLabel(app, text='')
+resultado_criar.pack(pady=10)
 
 # Inicia o loop da aplicação ( Tela )
 app.mainloop()
