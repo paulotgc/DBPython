@@ -91,49 +91,49 @@ def validar_dados():
 #session.commit()
 
 # Criação da janela principal
-app = ctk.CTk()
-app.title('Banco de Dados')
-app.geometry('300x500')
+janela_criar = ctk.CTk()
+janela_criar.title('Criar Cadastro')
+janela_criar.geometry('300x350')
 
 
 # Criação dos campos
 
 # Criação do titulo
-label_criar = ctk.CTkLabel(app, text='CREATE', font=('Helvetica', 14, 'bold'))
+label_criar = ctk.CTkLabel(janela_criar, text='CREATE', font=('Helvetica', 14, 'bold'))
 label_criar.pack(pady=10)
 
 # label - nome
-label_nome = ctk.CTkLabel(app, text='Nome')
+label_nome = ctk.CTkLabel(janela_criar, text='Nome')
 label_nome.pack(pady=0)
 
 # Entry - nome
-campo_nome = ctk.CTkEntry(app, placeholder_text='Nome')
+campo_nome = ctk.CTkEntry(janela_criar, placeholder_text='Nome')
 campo_nome.pack(pady=0)
 
 # Label - email
-label_email = ctk.CTkLabel(app, text='Email')
+label_email = ctk.CTkLabel(janela_criar, text='Email')
 label_email.pack(pady=0)
 
 # Entry - email
-campo_email = ctk.CTkEntry(app, placeholder_text='Email')
+campo_email = ctk.CTkEntry(janela_criar, placeholder_text='Email')
 campo_email.pack(pady=0)
 
 # label - senha
-label_senha = ctk.CTkLabel(app, text='Senha')
+label_senha = ctk.CTkLabel(janela_criar, text='Senha')
 label_senha.pack(pady=0)
 
 # Entry - Senha
-campo_senha = ctk.CTkEntry(app, placeholder_text='Senha')
+campo_senha = ctk.CTkEntry(janela_criar, placeholder_text='Senha')
 campo_senha.pack(pady=0)
 
 # button Create
-botao_criar = ctk.CTkButton(app, text='Create',command=validar_dados)
+botao_criar = ctk.CTkButton(janela_criar, text='Create',command=validar_dados)
 botao_criar.pack(pady=10)
 
 # Campo feedback de criação
-resultado_criar = ctk.CTkLabel(app, text='')
+resultado_criar = ctk.CTkLabel(janela_criar, text='')
 resultado_criar.pack(pady=10)
 
-# Inicia o loop da aplicação ( Tela )
-app.mainloop()
+# Inicia o loop da aplicação ( janela criar )
+janela_criar.mainloop()
 
