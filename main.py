@@ -32,7 +32,6 @@ class Usuario(Base):
         self.ativo = ativo
 
 
-
 class Livro(Base):
     __tablename__ = 'livros'
     id = Column('id', Integer, primary_key=True, autoincrement=True)
